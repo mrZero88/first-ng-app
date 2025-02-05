@@ -1,0 +1,16 @@
+@if(!this.todos().length) {
+<span>Loading...</span>
+}
+
+<label>Filter Todos</label>
+<input
+  [(ngModel)]="searchTerm"
+  name="searchTerm"
+  placeholder="Filter Todos..."
+/>
+
+<ul class="todos">
+  @for (todo of todos() | filterTodos : searchTerm(); track todo.id) {
+  <app-todo-item [todo]="todo" (todoToggled)="updateTodo($event)" />
+  }
+</ul>
